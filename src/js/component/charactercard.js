@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const CharacterCard = () => {
+    const {store,actions} = useContext(Context)
     const [characters, setCharacters] = useState([])
     useEffect(()=>{
         async function getCharacters() {
@@ -19,6 +20,7 @@ export const CharacterCard = () => {
             <div className="card-body">
               <h5 className="card-title">{item.name}</h5>
               <Link to={"/CharacterDescription/"+(index+1)} className="btn btn-primary">Learn More</Link>
+              <button onClick={()=> actions.updateFavorites(item.name) }><i class="fa-regular fa-star"></i></button>
             </div>
           </div>
         ))}
