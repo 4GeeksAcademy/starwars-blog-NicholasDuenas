@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-	const { store, actions } = useContext(Context)
+  const { store, actions } = useContext(Context);
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="#">
           Star Wars Blog
         </a>
@@ -23,7 +23,6 @@ export const Navbar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
-            
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -35,13 +34,18 @@ export const Navbar = () => {
                 Favorites
               </a>
               <ul class="dropdown-menu">
-                {store.favorites.map((item, index) => 
-				(<li>
-					<a class="dropdown-item" href="#">
-					  {item}
-					</a>
-				  </li>
-				))}
+                {store.favorites.map((item, index) => (
+                  <li>
+                    {item}
+
+                    <button
+                      className="btn ms-3"
+                      onClick={() => actions.updateFavorites(item)}
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
